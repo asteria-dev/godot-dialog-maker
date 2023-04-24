@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dh41nnkkjoe21"]
+
+[ext_resource type="Script" path="res://types/helper/condition_custom.gd" id="1_7twa4"]
+[ext_resource type="Texture2D" uid="uid://g11ggtjjpf8c" path="res://icons/minus_button.png" id="2_8cvat"]
+
+[node name="Custom" type="HBoxContainer" groups=["condition_stack"]]
+script = ExtResource("1_7twa4")
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+text = "IF"
+
+[node name="LineEdit" type="LineEdit" parent="."]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+expand_to_text_length = true
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+icon = ExtResource("2_8cvat")
+
+[connection signal="pressed" from="Button" to="." method="_on_remove_button_pressed"]

@@ -1,0 +1,87 @@
+[gd_scene load_steps=3 format=3 uid="uid://kekse12i26bq"]
+
+[ext_resource type="Script" path="res://Main.gd" id="1_qr3jy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kjjl5"]
+font_color = Color(0.345098, 0.780392, 0.156863, 1)
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qr3jy")
+metadata/_edit_lock_ = true
+
+[node name="GraphEdit" type="GraphEdit" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+right_disconnects = true
+metadata/_edit_lock_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.08
+anchor_bottom = 0.08
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Node" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "+ NODE"
+
+[node name="Option" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "+ OPTION"
+
+[node name="Action" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "+ ACTION"
+
+[node name="Save" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "SAVE"
+
+[node name="Load" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "LOAD"
+
+[node name="Clear" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "CLEAR"
+
+[node name="AutoSave" type="CheckButton" parent="HBoxContainer"]
+layout_mode = 2
+text = "AUTOSAVE"
+
+[node name="Notification" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_kjjl5")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="FileDialog" type="FileDialog" parent="."]
+position = Vector2i(264, 85)
+size = Vector2i(694, 467)
+ok_button_text = "Save"
+access = 2
+filters = PackedStringArray("*.dialog")
+
+[connection signal="connection_request" from="GraphEdit" to="." method="_on_graph_edit_connection_request"]
+[connection signal="disconnection_request" from="GraphEdit" to="." method="_on_graph_edit_disconnection_request"]
+[connection signal="pressed" from="HBoxContainer/Node" to="." method="_on_new_node_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Option" to="." method="_on_new_option_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Action" to="." method="_on_new_action_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Save" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Load" to="." method="_on_load_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Clear" to="." method="_on_clear_button_pressed"]
+[connection signal="toggled" from="HBoxContainer/AutoSave" to="." method="_on_autosave_button_toggled"]
+[connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]

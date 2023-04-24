@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmlfvbqtcpwhn"]
+
+[ext_resource type="Script" path="res://types/helper/condition_progress.gd" id="1_rb12u"]
+[ext_resource type="Texture2D" uid="uid://g11ggtjjpf8c" path="res://icons/minus_button.png" id="2_wuh6o"]
+
+[node name="Progress" type="HBoxContainer" groups=["condition_stack"]]
+script = ExtResource("1_rb12u")
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+text = "IF Progress"
+
+[node name="OptionButton" type="OptionButton" parent="."]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+
+[node name="OptionButton2" type="OptionButton" parent="."]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+item_count = 2
+selected = 0
+popup/item_0/text = "false"
+popup/item_0/id = 0
+popup/item_1/text = "true"
+popup/item_1/id = 1
+
+[node name="LineEdit" type="LineEdit" parent="."]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+placeholder_text = "Serial"
+expand_to_text_length = true
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+icon = ExtResource("2_wuh6o")
+
+[connection signal="pressed" from="Button" to="." method="_on_remove_button_pressed"]

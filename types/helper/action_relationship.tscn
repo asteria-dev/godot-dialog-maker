@@ -1,0 +1,67 @@
+[gd_scene load_steps=5 format=3 uid="uid://c5dgcp1cnboux"]
+
+[ext_resource type="Texture2D" uid="uid://0svlukm3isk4" path="res://icons/add_button.png" id="1_b3spm"]
+[ext_resource type="Script" path="res://types/helper/action_relationship.gd" id="1_ehsej"]
+[ext_resource type="Texture2D" uid="uid://g11ggtjjpf8c" path="res://icons/minus_button.png" id="2_iveyi"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_42ru3"]
+
+[node name="Relationship" type="HBoxContainer"]
+script = ExtResource("1_ehsej")
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+text = "Relationship"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Target" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Target"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "Target"
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/Target"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Amount" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Amount"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "Amount"
+label_settings = SubResource("LabelSettings_42ru3")
+
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/Amount"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -10.0
+max_value = 10.0
+step = 0.5
+alignment = 3
+suffix = "❤︎"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Add" type="Button" parent="VBoxContainer2"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 4
+icon = ExtResource("1_b3spm")
+
+[node name="Remove" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 4
+icon = ExtResource("2_iveyi")
+
+[connection signal="pressed" from="VBoxContainer2/Add" to="." method="_on_add_button_pressed"]
+[connection signal="pressed" from="VBoxContainer2/Remove" to="." method="_on_remove_button_pressed"]

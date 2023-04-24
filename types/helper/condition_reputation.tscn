@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://ct5cd4mquymsv"]
+
+[ext_resource type="Script" path="res://types/helper/condition_reputation.gd" id="1_7gywu"]
+[ext_resource type="Texture2D" uid="uid://g11ggtjjpf8c" path="res://icons/minus_button.png" id="2_2q0c0"]
+
+[node name="Reputation" type="HBoxContainer" groups=["condition_stack"]]
+script = ExtResource("1_7gywu")
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+text = "IF Reputation"
+
+[node name="OptionButton" type="OptionButton" parent="."]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+
+[node name="OptionButton2" type="OptionButton" parent="."]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+item_count = 5
+selected = 0
+popup/item_0/text = ">"
+popup/item_0/id = 0
+popup/item_1/text = "<"
+popup/item_1/id = 1
+popup/item_2/text = ">="
+popup/item_2/id = 2
+popup/item_3/text = "<="
+popup/item_3/id = 3
+popup/item_4/text = "=="
+popup/item_4/id = 4
+
+[node name="SpinBox" type="SpinBox" parent="."]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+alignment = 3
+suffix = "🌟"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+icon = ExtResource("2_2q0c0")
+
+[connection signal="pressed" from="Button" to="." method="_on_remove_button_pressed"]

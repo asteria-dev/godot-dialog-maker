@@ -1,0 +1,265 @@
+[gd_scene load_steps=12 format=3 uid="uid://bncksl63oirl7"]
+
+[ext_resource type="Script" path="res://types/scripts/action_node.gd" id="1_kfwuw"]
+[ext_resource type="Texture2D" uid="uid://bd3q6c5co2e7a" path="res://icons/more_button.png" id="2_26asi"]
+[ext_resource type="Texture2D" uid="uid://0svlukm3isk4" path="res://icons/add_button.png" id="2_bxgs7"]
+[ext_resource type="Script" path="res://types/helper/action_relationship.gd" id="2_cpc8v"]
+[ext_resource type="Texture2D" uid="uid://g11ggtjjpf8c" path="res://icons/minus_button.png" id="3_oar15"]
+[ext_resource type="Script" path="res://types/helper/action_reputation.gd" id="5_5ql6i"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3o43i"]
+font_color = Color(0.968627, 1, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_46fol"]
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vqtot"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7ly3x"]
+font_color = Color(1, 0.8, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_v47tb"]
+font_color = Color(1, 0, 0, 1)
+
+[node name="ActionNode" type="GraphNode" node_paths=PackedStringArray("main_box", "additional_box", "node_title", "signal_emit", "relationship", "reputation", "end") groups=["graph_nodes"]]
+offset_right = 496.0
+offset_bottom = 138.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+title = "Action Node"
+show_close = true
+resizable = true
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+slot/1/left_enabled = true
+slot/1/left_type = 0
+slot/1/left_color = Color(1, 1, 1, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = true
+slot/1/right_type = 0
+slot/1/right_color = Color(1, 1, 1, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
+script = ExtResource("1_kfwuw")
+main_box = NodePath("HBoxContainer/Main")
+additional_box = NodePath("HBoxContainer/Addtional")
+node_title = NodePath("HBoxContainer/Main/Title/LineEdit")
+signal_emit = NodePath("HBoxContainer/Main/EmitSignal")
+relationship = NodePath("HBoxContainer/Addtional/Relationship")
+reputation = NodePath("HBoxContainer/Addtional/Reputation")
+end = NodePath("HBoxContainer/Main/End")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "ACTION"
+label_settings = SubResource("LabelSettings_3o43i")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Main" type="VBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="Title" type="HBoxContainer" parent="HBoxContainer/Main"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Main/Title"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+text = "Title"
+
+[node name="LineEdit" type="LineEdit" parent="HBoxContainer/Main/Title"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="EmitSignal" type="HBoxContainer" parent="HBoxContainer/Main"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Main/EmitSignal"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+text = "Signal"
+
+[node name="LineEdit" type="LineEdit" parent="HBoxContainer/Main/EmitSignal"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Relationship1" type="HBoxContainer" parent="HBoxContainer/Main"]
+visible = false
+layout_mode = 2
+script = ExtResource("2_cpc8v")
+
+[node name="Label" type="Label" parent="HBoxContainer/Main/Relationship1"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+text = "Relationship"
+label_settings = SubResource("LabelSettings_46fol")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Main/Relationship1"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Target" type="HBoxContainer" parent="HBoxContainer/Main/Relationship1/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Main/Relationship1/VBoxContainer/Target"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "Target"
+
+[node name="OptionButton" type="OptionButton" parent="HBoxContainer/Main/Relationship1/VBoxContainer/Target"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Amount" type="HBoxContainer" parent="HBoxContainer/Main/Relationship1/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Main/Relationship1/VBoxContainer/Amount"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "Amount"
+label_settings = SubResource("LabelSettings_vqtot")
+
+[node name="SpinBox" type="SpinBox" parent="HBoxContainer/Main/Relationship1/VBoxContainer/Amount"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -10.0
+max_value = 10.0
+step = 0.5
+alignment = 3
+suffix = "❤︎"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/Main/Relationship1"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Add" type="Button" parent="HBoxContainer/Main/Relationship1/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 4
+icon = ExtResource("2_bxgs7")
+
+[node name="Remove" type="Button" parent="HBoxContainer/Main/Relationship1/VBoxContainer2"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 4
+icon = ExtResource("3_oar15")
+
+[node name="Reputation1" type="HBoxContainer" parent="HBoxContainer/Main"]
+visible = false
+layout_mode = 2
+script = ExtResource("5_5ql6i")
+
+[node name="Label" type="Label" parent="HBoxContainer/Main/Reputation1"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+text = "Reputation"
+label_settings = SubResource("LabelSettings_7ly3x")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Main/Reputation1"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Target" type="HBoxContainer" parent="HBoxContainer/Main/Reputation1/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Main/Reputation1/VBoxContainer/Target"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "Location"
+
+[node name="OptionButton" type="OptionButton" parent="HBoxContainer/Main/Reputation1/VBoxContainer/Target"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Amount" type="HBoxContainer" parent="HBoxContainer/Main/Reputation1/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Main/Reputation1/VBoxContainer/Amount"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "Amount"
+label_settings = SubResource("LabelSettings_vqtot")
+
+[node name="SpinBox" type="SpinBox" parent="HBoxContainer/Main/Reputation1/VBoxContainer/Amount"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -10.0
+max_value = 10.0
+step = 0.5
+alignment = 3
+suffix = "🌟"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/Main/Reputation1"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Add" type="Button" parent="HBoxContainer/Main/Reputation1/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 4
+icon = ExtResource("2_bxgs7")
+
+[node name="Remove" type="Button" parent="HBoxContainer/Main/Reputation1/VBoxContainer2"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 4
+icon = ExtResource("3_oar15")
+
+[node name="End" type="HBoxContainer" parent="HBoxContainer/Main"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Main/End"]
+layout_mode = 2
+text = "DIALOG END"
+label_settings = SubResource("LabelSettings_v47tb")
+
+[node name="More" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_pressed_color = Color(1, 0.482353, 0, 1)
+toggle_mode = true
+icon = ExtResource("2_26asi")
+flat = true
+
+[node name="Addtional" type="VBoxContainer" parent="HBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="End" type="CheckButton" parent="HBoxContainer/Addtional"]
+layout_mode = 2
+text = "End "
+
+[node name="EmitSignal" type="CheckButton" parent="HBoxContainer/Addtional"]
+layout_mode = 2
+text = "Signal"
+
+[node name="Relationship" type="CheckButton" parent="HBoxContainer/Addtional"]
+layout_mode = 2
+text = "Relationship"
+
+[node name="Reputation" type="CheckButton" parent="HBoxContainer/Addtional"]
+layout_mode = 2
+text = "Reputation"
+
+[connection signal="close_request" from="." to="." method="_on_close_request"]
+[connection signal="resize_request" from="." to="." method="_on_resize_request"]
+[connection signal="text_changed" from="HBoxContainer/Main/Title/LineEdit" to="." method="_on_title_text_changed"]
+[connection signal="pressed" from="HBoxContainer/Main/Relationship1/VBoxContainer2/Add" to="HBoxContainer/Main/Relationship1" method="_on_add_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Main/Relationship1/VBoxContainer2/Remove" to="HBoxContainer/Main/Relationship1" method="_on_remove_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Main/Reputation1/VBoxContainer2/Add" to="HBoxContainer/Main/Reputation1" method="_on_add_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Main/Reputation1/VBoxContainer2/Remove" to="HBoxContainer/Main/Reputation1" method="_on_remove_button_pressed"]
+[connection signal="toggled" from="HBoxContainer/More" to="." method="_on_more_button_toggled"]
+[connection signal="toggled" from="HBoxContainer/Addtional/End" to="." method="_on_end_button_toggled"]
+[connection signal="toggled" from="HBoxContainer/Addtional/EmitSignal" to="." method="_on_emit_signal_button_toggled"]
+[connection signal="toggled" from="HBoxContainer/Addtional/Relationship" to="." method="_on_relationship_button_toggled"]
+[connection signal="toggled" from="HBoxContainer/Addtional/Reputation" to="." method="_on_reputation_button_toggled"]

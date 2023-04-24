@@ -1,0 +1,169 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8e0nbb8o61ei"]
+
+[ext_resource type="Script" path="res://types/scripts/option_node.gd" id="1_60y38"]
+[ext_resource type="Texture2D" uid="uid://bd3q6c5co2e7a" path="res://icons/more_button.png" id="2_nk5l7"]
+[ext_resource type="Texture2D" uid="uid://0svlukm3isk4" path="res://icons/add_button.png" id="3_6qvha"]
+[ext_resource type="Script" path="res://types/helper/conditions_main.gd" id="4_dp5f5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3icv3"]
+font_color = Color(1, 0.388235, 0.0117647, 1)
+
+[node name="OptionNode" type="GraphNode" node_paths=PackedStringArray("main_box", "additional_box", "node_title", "text", "condition_container", "condition_creator") groups=["graph_nodes"]]
+offset_right = 496.0
+offset_bottom = 147.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+title = "Option Node"
+show_close = true
+resizable = true
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+slot/1/left_enabled = true
+slot/1/left_type = 0
+slot/1/left_color = Color(1, 0.388235, 0.0117647, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = true
+slot/1/right_type = 0
+slot/1/right_color = Color(1, 0.388235, 0.0117647, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
+script = ExtResource("1_60y38")
+main_box = NodePath("VBoxContainer/HBoxContainer/Main")
+additional_box = NodePath("VBoxContainer/HBoxContainer/Additional")
+node_title = NodePath("VBoxContainer/HBoxContainer/Main/Title/LineEdit")
+text = NodePath("VBoxContainer/HBoxContainer/Main/Text")
+condition_container = NodePath("VBoxContainer/Conditions")
+condition_creator = NodePath("VBoxContainer/HBoxContainer/Additional/VBoxContainer/HBoxContainer2")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "OPTION"
+label_settings = SubResource("LabelSettings_3icv3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Main" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="Title" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Main"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Main/Title"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+text = "Title"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer/Main/Title"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Text" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Main"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Main/Text"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+text = "Text"
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer/Main/Text"]
+layout_mode = 2
+size_flags_horizontal = 3
+wrap_mode = 1
+scroll_fit_content_height = true
+
+[node name="More" type="Button" parent="VBoxContainer/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_pressed_color = Color(1, 0.482353, 0, 1)
+toggle_mode = true
+icon = ExtResource("2_nk5l7")
+flat = true
+
+[node name="Additional" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Text" type="CheckButton" parent="VBoxContainer/HBoxContainer/Additional"]
+layout_mode = 2
+button_pressed = true
+text = "Text"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/Additional"]
+layout_mode = 2
+
+[node name="HboxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Additional/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Additional/VBoxContainer/HboxContainer"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+text = "Condition"
+
+[node name="CheckButton" type="CheckButton" parent="VBoxContainer/HBoxContainer/Additional/VBoxContainer/HboxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Additional/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/Additional/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/HBoxContainer/Additional/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+item_count = 2
+selected = 0
+popup/item_0/text = "IF"
+popup/item_0/id = 0
+popup/item_1/text = "OR"
+popup/item_1/id = 1
+
+[node name="OptionButton2" type="OptionButton" parent="VBoxContainer/HBoxContainer/Additional/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+item_count = 4
+selected = 0
+popup/item_0/text = "Relationship"
+popup/item_0/id = 0
+popup/item_1/text = "Reputation"
+popup/item_1/id = 1
+popup/item_2/text = "Progress"
+popup/item_2/id = 2
+popup/item_3/text = "Custom"
+popup/item_3/id = 3
+
+[node name="Condition" type="Button" parent="VBoxContainer/HBoxContainer/Additional/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+icon = ExtResource("3_6qvha")
+
+[node name="Conditions" type="VBoxContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+script = ExtResource("4_dp5f5")
+
+[node name="Label" type="Label" parent="VBoxContainer/Conditions"]
+layout_mode = 2
+text = "Conditions"
+
+[connection signal="close_request" from="." to="." method="_on_close_request"]
+[connection signal="resize_request" from="." to="." method="_on_resize_request"]
+[connection signal="text_changed" from="VBoxContainer/HBoxContainer/Main/Title/LineEdit" to="." method="_on_title_text_changed"]
+[connection signal="toggled" from="VBoxContainer/HBoxContainer/More" to="." method="_on_more_button_toggled"]
+[connection signal="toggled" from="VBoxContainer/HBoxContainer/Additional/Text" to="." method="_on_text_button_toggled"]
+[connection signal="toggled" from="VBoxContainer/HBoxContainer/Additional/VBoxContainer/HboxContainer/CheckButton" to="." method="_on_condition_toggled"]
+[connection signal="item_selected" from="VBoxContainer/HBoxContainer/Additional/VBoxContainer/HBoxContainer2/VBoxContainer/OptionButton" to="VBoxContainer/Conditions" method="_on_if_or_button_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/HBoxContainer/Additional/VBoxContainer/HBoxContainer2/VBoxContainer/OptionButton2" to="VBoxContainer/Conditions" method="_on_condition_button_item_selected"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Additional/VBoxContainer/HBoxContainer2/Condition" to="VBoxContainer/Conditions" method="_on_add_condition_button_pressed"]
